@@ -1,15 +1,14 @@
 //
-//  TestingTests.swift
-//  TestingTests
+//  MoviesTableDataSourceTests.swift
+//  Testing
 //
-//  Created by Bassem Anwer on 8/23/17.
+//  Created by Bassem Anwer on 8/24/17.
 //  Copyright © 2017 Bassem Anwer. All rights reserved.
 //
 
 import XCTest
-@testable import Testing
 
-class TestingTests: XCTestCase {
+class MoviesTableDataSourceTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
