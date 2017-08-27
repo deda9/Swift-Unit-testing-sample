@@ -7,3 +7,20 @@
 //
 
 import Foundation
+
+struct Movie: Equatable{
+    var title: String
+    var releaseDate : String?
+    
+    init(title: String, releaseDate: String? = nil) {
+        self.title = title
+        self.releaseDate = releaseDate
+    }
+    
+    static func== (lhs: Movie, rhs: Movie) -> Bool{
+        if(lhs.title != rhs.title || lhs.releaseDate != rhs.releaseDate){
+            return false
+        }
+        return true
+    }
+}

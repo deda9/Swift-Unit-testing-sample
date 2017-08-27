@@ -7,29 +7,52 @@
 //
 
 import XCTest
+import UIKit
 
+@testable import Testing
 class MainViewControllerTests: XCTestCase {
+    
+    var sut: MainViewController!
     
     override func setUp() {
         super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
+        sut = storyBoard.instantiateViewController(withIdentifier: "MainView") as! MainViewController
+        _ = sut.view
     }
     
     override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
     }
-    
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+
+    func testMainVC_tableViewShouldNotNil(){
+        XCTAssertNotNil(sut.tableView)
     }
     
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    func testViewDidLoad_TableDataSourceNotNUll(){
+        let tableView = sut.tableView
+        XCTAssertNotNil(tableView?.dataSource)
+    }
+    
+    func testViewDidLoad_TableDataSourceIsTypeOfMoviesDataSource(){
+        let tableView = sut.tableView
+        XCTAssertTrue(tableView?.dataSource is MoviesTableDataSource)
+    }
+    
+    func testViewDidLoad_TableViewDelegetNotNull(){
+        let tableView = sut.tableView
+        XCTAssertNotNil(tableView?.delegate)
+    }
+    
+    func testViewDidLoad_TableDelegateIsTypeOfMoviesDataSource(){
+        let tableView = sut.tableView
+        XCTAssertTrue(tableView?.delegate is MoviesTableDataSource)
+    }
+    
+    func testViewDidLoad_ShouldTableViewDelegateAndDataSourceTheSameType(){
+        let delegate = sut.tableView.delegate as! MoviesTableDataSource
+        let dataSource = sut.tableView.dataSource as! MoviesTableDataSource
+        XCTAssertEqual(dataSource, delegate)
     }
     
 }
